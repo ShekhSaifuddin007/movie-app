@@ -1,4 +1,8 @@
 
+.spinner {
+    position: absolute !important;
+}
+
 @responsive {
     .inline-block {
         display: inline-block;

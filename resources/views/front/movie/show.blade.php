@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Movie Name')
+@section('title')
+    {{ $movie['title'] }}
+@stop
 
 @section('content')
     <div class="movie-info border-b border-gray-800">
