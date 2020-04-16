@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Http;
@@ -14,12 +13,14 @@ class SearchDropdown extends Component
         $searchResults = [];
 
         if (strlen($this->search) >= 2) {
-            $searchResults = collect(Http::withToken(config('services.tmdb.token'))
+            $searchResults = Http::withToken(config('services.tmdb.token'))
                                     ->get("https://api.themoviedb.org/3/search/movie?query={$this->search}")
-                                    ->json()['results'])->take(10);
+                                    ->json()['results'];
         }
         //dump($searchResults);
 
-        return view('livewire.search-dropdown', compact('searchResults'));
+        return view('livewire.search-dropdown', [
+            'searchResults' => collect($searchResults)->take(10)
+        ]);
     }
 }
