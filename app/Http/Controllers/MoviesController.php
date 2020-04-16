@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\ViewModels\MoviesViewModel;
 use App\ViewModels\MovieViewModel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class MoviesController extends Controller
@@ -38,20 +37,5 @@ class MoviesController extends Controller
         $viewModel = new MovieViewModel($movie);
 
         return view('front.movie.show', $viewModel);
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }
