@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="sm:ml-6 ml-3">
-                <a href="#" class="hover:text-gray-300 text-sm sm:text-base">
+                <a href="{{ route('tv.index') }}" class="hover:text-gray-300 text-sm sm:text-base">
                     <span>TV</span> <span class="hidden sm:inline-block">Shows</span>
                 </a>
             </li>

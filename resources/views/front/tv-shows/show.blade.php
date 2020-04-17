@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $movie['title'] }}
+    {{ $tv['name'] }}
 @stop
 
 @section('content')
-    <div class="movie-info border-b border-gray-800">
+    <div class="tv-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
 
-{{--            <div class="flex-none">--}}
-                <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}" class="w-full md:w-96">
-{{--            </div>--}}
+            {{--            <div class="flex-none">--}}
+            <img src="{{ $tv['poster_path'] }}" alt="{{ $tv['name'] }}" class="w-full md:w-96">
+            {{--            </div>--}}
 
             <div class="md:ml-24">
-                <h2 class="text-4xl font-semibold">{{ $movie['title'] }}</h2>
+                <h2 class="text-4xl font-semibold">{{ $tv['name'] }}</h2>
 
                 <div class="flex flex-wrap items-center text-gray-400 text-sm">
 
@@ -23,27 +23,27 @@
                         </g>
                     </svg>
 
-                    <span class="ml-1">{{ $movie['vote_average'] }}%</span>
+                    <span class="ml-1">{{ $tv['vote_average'] }}%</span>
                     <span class="mx-2">|</span>
-                    <span>{{ $movie['release_date'] }}</span>
+                    <span>{{ $tv['first_air_date'] }}</span>
                     <span class="mx-2">|</span>
                     <span>
-                      {{ $movie['genres'] }}
+                      {{ $tv['genres'] }}
                     </span>
                 </div>
 
                 <p class="text-gray-300 mt-8">
-                   {{ $movie['overview'] }}
+                    {{ $tv['overview'] }}
                 </p>
 
                 <div class="mt-12">
-                    <h2 class="text-white font-semibold">Feature Crew</h2>
+                    <h2 class="text-white font-semibold">Created By</h2>
                     <div class="flex mt-4">
 
-                        @foreach ($movie['crew'] as $crew)
+                        @foreach ($tv['created_by'] as $creator)
                             <div class="mr-8">
-                                <div>{{ $crew['name'] }}</div>
-                                <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
+                                <div>{{ $creator['name'] }}</div>
+                                <div class="text-sm text-gray-400">Creator</div>
                             </div>
                         @endforeach
 
@@ -51,11 +51,11 @@
                 </div>
 
                 <div x-data="{ isOpen: false }">
-                    @if (count($movie['videos']['results']) > 0)
+                    @if (count($tv['videos']['results']) > 0)
                         <div class="mt-12">
                             <button type="button"
-                               class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
-                               @click="isOpen = true"
+                                    class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
+                                    @click="isOpen = true"
                             >
                                 <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
                                 <span class="ml-2">Play Trailer</span>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="modal-body px-8 py-8">
                                     <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
-                                        <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $tv['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -89,15 +89,15 @@
 
             </div>
         </div>
-    </div> <!-- /movie info -->
+    </div> <!-- /tv info -->
 
 
-    <div class="movie-cast border-b border-gray-800">
+    <div class="tv-cast border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Cast</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
 
-                @foreach ($movie['cast'] as $cast)
+                @foreach ($tv['cast'] as $cast)
                     <div class="mt-8">
                         <a href="{{ route('actors.show', $cast['id']) }}">
                             <img src="{{ $cast['profile_path'] }}" alt="{{ $cast['name'] }}" class="hover:opacity-75 w-full transition ease-in-out duration-150">
@@ -114,19 +114,19 @@
 
             </div>
         </div>
-    </div> <!-- end movie-cast -->
+    </div> <!-- end tv-cast -->
 
-    <div class="movie-images border-b border-gray-800" x-data="{ isOpen: false, image: '' }">
+    <div class="tv-images border-b border-gray-800" x-data="{ isOpen: false, image: '' }">
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                @foreach ($movie['images'] as $image)
+                @foreach ($tv['images'] as $image)
                     <div class="mt-8">
                         <a href="#"
                            @click.prevent="
-                           isOpen = true
-                           image = '{{ 'https://image.tmdb.org/t/p/original'.$image['file_path'] }}'
-                        "
+                               isOpen = true
+                               image = '{{ 'https://image.tmdb.org/t/p/original'.$image['file_path'] }}'
+                               "
                         >
                             <img src="{{ 'https://image.tmdb.org/t/p/w500'.$image['file_path'] }}" alt="" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>

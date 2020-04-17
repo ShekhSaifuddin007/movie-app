@@ -10,11 +10,11 @@
 
                 @foreach ($popularActors as $actor)
                     <div class="actor mt-8">
-                        <a href="#">
+                        <a href="{{ route('actors.show', $actor['id']) }}">
                             <img src="{{ $actor['profile_path'] }}" alt="" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="mt-2">
-                            <a href="#" class="text-lg text-gray-300">
+                            <a href="{{ route('actors.show', $actor['id']) }}" class="text-lg text-gray-300">
                                 {{ $actor['name'] }}
                             </a>
                             <div class="text-sm text-gray-400 truncate">
