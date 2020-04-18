@@ -27,40 +27,40 @@
             </div>
         </div> <!-- /popular actors -->
 
-        <div class="page-load-status my-8">
-            <div class="flex justify-center">
-                <div class="infinite-scroll-request spinner my-8 text-4xl">&nbsp;</div>
-            </div>
-            <p class="infinite-scroll-last">End of content</p>
-            <p class="infinite-scroll-error">No more pages to load</p>
-        </div>
-
-{{--        <div class="flex justify-between py-16">--}}
-{{--            @if ($previous)--}}
-{{--                <a href="/actors/page={{ $previous }}">Previous</a>--}}
-{{--            @else--}}
-{{--                <div></div>--}}
-{{--            @endif--}}
-
-{{--            @if ($next)--}}
-{{--                <a href="/actors/page={{ $next }}">Next</a>--}}
-{{--            @else--}}
-{{--                <div></div>--}}
-{{--            @endif--}}
+{{--        <div class="page-load-status my-8">--}}
+{{--            <div class="flex justify-center">--}}
+{{--                <div class="infinite-scroll-request spinner my-8 text-4xl">&nbsp;</div>--}}
+{{--            </div>--}}
+{{--            <p class="infinite-scroll-last">End of content</p>--}}
+{{--            <p class="infinite-scroll-error">No more pages to load</p>--}}
 {{--        </div>--}}
+
+        <div class="flex justify-between py-16">
+            @if ($previous)
+                <a href="/actors/page={{ $previous }}">Previous</a>
+            @else
+                <div></div>
+            @endif
+
+            @if ($next)
+                <a href="/actors/page={{ $next }}">Next</a>
+            @else
+                <div></div>
+            @endif
+        </div>
     </div>
 @stop
 
-@section('scripts')
-    <script src="//unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
-    <script>
-        var elem = document.querySelector('.grid');
-        var infScroll = new InfiniteScroll( elem, {
-            // options
-            path: '/actors/page=@{{#}}',
-            append: '.actor',
-            // history: false,
-            status: '.page-load-status'
-        });
-    </script>
-@stop
+{{--@section('scripts')--}}
+{{--    <script src="//unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>--}}
+{{--    <script>--}}
+{{--        var elem = document.querySelector('.grid');--}}
+{{--        var infScroll = new InfiniteScroll( elem, {--}}
+{{--            // options--}}
+{{--            path: '/actors/page=@{{#}}',--}}
+{{--            append: '.actor',--}}
+{{--            // history: false,--}}
+{{--            status: '.page-load-status'--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@stop--}}

@@ -95,7 +95,11 @@
                 @foreach ($credits as $credit)
                     <li>
                         {{ $credit['release_year'] }} &middot;
-                        <strong><a href="{{ $credit['linkToPage'] }}" class="hover:underline">{{ $credit['title'] }}</a></strong>
+                        <strong>
+                            <a href="{{ $credit['linkToPage'] }}" class="hover:underline">
+                                {{ $credit['title'] }}
+                            </a>
+                        </strong>
                         as {{ $credit['character'] }}
                     </li>
                 @endforeach

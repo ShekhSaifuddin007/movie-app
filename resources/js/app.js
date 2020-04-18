@@ -10,6 +10,10 @@ require('./bootstrap');
 
 window.Vue = vue;
 
+import TurboLinks from 'turbolinks';
+
+TurboLinks.start();
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
